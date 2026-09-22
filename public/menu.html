@@ -16,18 +16,17 @@
   <!-- Fonts & Styles -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Site Header -->
   <header class="site-header scrolled" id="header">
     <div class="container header-container">
-      <a href="/" class="brand-logo" aria-label="Heybeli Sahne Ana Sayfa">
+      <a href="/" class="brand-logo" aria-label="Heybeli Sahne">
         <span class="logo-main">HEYBELİ</span>
-        <span class="logo-sub">SAHNE</span>
-        <span class="logo-tagline">YENİ NESİL MEYHANE</span>
+        <span class="logo-sub">SAHNE & MEYHANE</span>
       </a>
 
       <nav class="desktop-nav" aria-label="Ana Menü">
@@ -42,197 +41,258 @@
       </nav>
 
       <div class="header-actions">
-        <a href="https://wa.me/905300000000" target="_blank" rel="noopener" class="btn-whatsapp-icon">WhatsApp</a>
-        <a href="/rezervasyon" class="btn-nav-reserve">Masa Ayırın</a>
+        <a href="https://wa.me/905300000000" target="_blank" rel="noopener" class="header-whatsapp-link">WhatsApp</a>
+        <a href="/rezervasyon" class="header-reserve-btn">Masa Ayırın</a>
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Menüyü Aç/Kapat">
+          <span></span><span></span><span></span>
+        </button>
       </div>
+    </div>
+
+    <!-- Mobile Slide Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+      <ul class="mobile-nav-list">
+        <li><a href="/" class="mobile-nav-link">Ana Sayfa</a></li>
+        <li><a href="/program" class="mobile-nav-link">Sahne Programı</a></li>
+        <li><a href="/menu" class="mobile-nav-link">Fiks Menü & Mezeler</a></li>
+        <li><a href="/galeri" class="mobile-nav-link">Atmosfer & Galeri</a></li>
+        <li><a href="/rezervasyon" class="mobile-nav-link">Masa Rezervasyonu</a></li>
+        <li><a href="/iletisim" class="mobile-nav-link">İletişim & Konum</a></li>
+      </ul>
     </div>
   </header>
 
   <!-- Main Content -->
-  <main style="padding-top: 140px; padding-bottom: 90px;">
+  <main style="padding-top: 160px; padding-bottom: 120px;">
     <div class="container">
       <div class="section-header text-center">
-        <span class="section-eyebrow">ŞEFİN İMZASI</span>
-        <h1 class="section-title">Ege’nin Taptaze Mezeleri & <em>Zengin Fiks Menüler</em></h1>
+        <span class="eyebrow">ŞEFİN İMZASI</span>
+        <h1 class="section-title">Ege’nin Taptaze Mezeleri & <em>Fiks Menüler</em></h1>
         <p class="section-subtitle">Heybeli Sahne mutfağında tüm mezeler günlük hazırlanır, dondurulmuş ürün kullanılmaz. Fiyatlarımıza canlı sahne performansı ve servis dahildir.</p>
       </div>
 
-      <!-- Fix Menus Grid -->
-      <div class="fix-menus-grid">
-        <!-- Card 1 -->
-        <div class="fix-menu-card">
-          <span class="fix-menu-tag">Çarşamba Günleri Özel</span>
-          <h3 class="fix-menu-title">Kadınlar Matinesi Menüsü</h3>
-          <div class="fix-menu-price-wrap">
-            <span class="fix-price">₺1.450</span>
-            <span class="fix-per">Kişi Başı (Şov & Canlı Performans Dahil)</span>
+      <!-- Prix-Fixe Grid -->
+      <div class="prixfixe-editorial-grid" style="margin-bottom: 80px;">
+        <!-- Menu 1 -->
+        <div class="prixfixe-column">
+          <div class="prixfixe-header">
+            <span class="prixfixe-eyebrow">Çarşamba Günleri Özel</span>
+            <h2 class="prixfixe-name">Kadınlar Matinesi Menüsü</h2>
+            <div class="prixfixe-price-row">
+              <span class="prixfixe-amount">₺1.450</span>
+              <span class="prixfixe-unit">/ kişi başı (şov dahil)</span>
+            </div>
           </div>
-          <ul class="fix-features-list">
-            <li>6 Çeşit Günlük Ege Mezesi (Atom, Girit, Haydari vb.)</li>
-            <li>Çıtır Paçanga Böreği & Mini Falafel</li>
-            <li>Ana Yemek: Piliç Külbastı veya Izgara Kasap Köfte</li>
-            <li>Mevsim Meyveleri & Dondurmalı İrmik</li>
-            <li>Hoş Geldin Kokteyli & Soft İçecekler</li>
-          </ul>
-          <a href="/rezervasyon?menu=Matine" class="btn-book-event" style="text-align: center;">Masa Ayır</a>
+          <div class="prixfixe-courses">
+            <div class="prixfixe-course-item">
+              <span class="course-category">Soğuk Mezeler</span>
+              <span class="course-details">6 çeşit günlük Ege mezesi: Atom, Girit ezmesi, haydari vb.</span>
+            </div>
+            <div class="prixfixe-course-item">
+              <span class="course-category">Ara Sıcak</span>
+              <span class="course-details">Çıtır paçanga böreği & mini falafel tabağı</span>
+            </div>
+            <div class="prixfixe-course-item">
+              <span class="course-category">Ana Yemek</span>
+              <span class="course-details">Piliç külbastı veya ızgara kasap köfte</span>
+            </div>
+            <div class="prixfixe-course-item">
+              <span class="course-category">Kapanış</span>
+              <span class="course-details">Mevsim meyveleri & dondurmalı irmik helvası</span>
+            </div>
+          </div>
+          <div class="prixfixe-cta">
+            <a href="/rezervasyon?menu=Matine" class="btn-secondary-editorial" style="width: 100%;">Bu Menüyle Rezerve Et</a>
+          </div>
         </div>
 
-        <!-- Card 2: Featured -->
-        <div class="fix-menu-card featured">
-          <span class="fix-menu-tag">Konser Günleri En Çok Tercih Edilen</span>
-          <h3 class="fix-menu-title">Heybeli Klasik Fiks Menü</h3>
-          <div class="fix-menu-price-wrap">
-            <span class="fix-price">₺1.950</span>
-            <span class="fix-per">Kişi Başı (Canlı Konser Girişi Dahil)</span>
+        <!-- Menu 2: Featured -->
+        <div class="prixfixe-column featured">
+          <div class="prixfixe-header">
+            <span class="prixfixe-eyebrow">Konser Günleri Seçimi</span>
+            <h2 class="prixfixe-name">Heybeli Klasik Fiks Menü</h2>
+            <div class="prixfixe-price-row">
+              <span class="prixfixe-amount">₺1.950</span>
+              <span class="prixfixe-unit">/ kişi başı (konser dahil)</span>
+            </div>
           </div>
-          <ul class="fix-features-list">
-            <li>8 Çeşit Şef İmzalı Taze Ege Mezesi</li>
-            <li>2 Çeşit Sıcak Başlangıç (Paçanga Böreği & İçli Köfte)</li>
-            <li>Ana Yemek Seçimi (Dana Lokum, Izgara Levrek veya Tavuk Külbastı)</li>
-            <li>Dondurmalı Sıcak Helva & Ege Meyve Tabağı</li>
-            <li>Yerli İçecek Paketi / Meşrubat Alternatifleri</li>
-          </ul>
-          <a href="/rezervasyon?menu=Klasik" class="btn-primary-glow" style="text-align: center; justify-content: center;">Hemen Rezerve Et</a>
+          <div class="prixfixe-courses">
+            <div class="prixfixe-course-item">
+              <span class="course-category">Gurme Mezeler</span>
+              <span class="course-details">8 çeşit şef imzalı taze Ege mezesi</span>
+            </div>
+            <div class="prixfixe-course-item">
+              <span class="course-category">Sıcak Başlangıçlar</span>
+              <span class="course-details">Paçanga böreği & içli köfte ikilisi</span>
+            </div>
+            <div class="prixfixe-course-item">
+              <span class="course-category">Ana Yemek</span>
+              <span class="course-details">Dana lokum, ızgara levrek veya tavuk külbastı</span>
+            </div>
+            <div class="prixfixe-course-item">
+              <span class="course-category">Kapanış</span>
+              <span class="course-details">Dondurmalı sıcak helva & taze Ege meyveleri</span>
+            </div>
+          </div>
+          <div class="prixfixe-cta">
+            <a href="/rezervasyon?menu=Klasik" class="btn-primary-editorial" style="width: 100%;">Masa Ayırın</a>
+          </div>
         </div>
 
-        <!-- Card 3 -->
-        <div class="fix-menu-card">
-          <span class="fix-menu-tag">VIP Loca & Sahne Önü Sıralar</span>
-          <h3 class="fix-menu-title">Gold VIP Gala Menüsü</h3>
-          <div class="fix-menu-price-wrap">
-            <span class="fix-price">₺2.750</span>
-            <span class="fix-per">Kişi Başı (VIP Ön Sıra & Gala Dahil)</span>
+        <!-- Menu 3 -->
+        <div class="prixfixe-column">
+          <div class="prixfixe-header">
+            <span class="prixfixe-eyebrow">VIP Loca & Sahne Önü</span>
+            <h2 class="prixfixe-name">Gold VIP Gala Menü</h2>
+            <div class="prixfixe-price-row">
+              <span class="prixfixe-amount">₺2.750</span>
+              <span class="prixfixe-unit">/ kişi başı (VIP masa dahil)</span>
+            </div>
           </div>
-          <ul class="fix-features-list">
-            <li>10 Çeşit Gurme Meze (Ahtapot Salatası, Somon Füme, Vişneli Sarma vb.)</li>
-            <li>3 Çeşit Sıcak (Tereyağlı Karides, Çıtır Kalamar, Paçanga)</li>
-            <li>Ana Yemek: Özel Dinlendirilmiş Dana Lokum veya Çipura Fileto</li>
-            <li>Özel Meyve Piramidi & Belçika Çikolatalı Sufle</li>
-            <li>Premium İçecekler & Özel Karşılama Şampanyası</li>
-          </ul>
-          <a href="/rezervasyon?menu=VIP" class="btn-book-event" style="text-align: center;">VIP Loca Ayır</a>
+          <div class="prixfixe-courses">
+            <div class="prixfixe-course-item">
+              <span class="course-category">Deniz & Şef İmzası</span>
+              <span class="course-details">10 çeşit gurme meze: Ahtapot salatası, lakerda, füme somon</span>
+            </div>
+            <div class="prixfixe-course-item">
+              <span class="course-category">Sıcak Deniz Mahsulleri</span>
+              <span class="course-details">Tereyağında güveç jumbo karides & çıtır kalamar tava</span>
+            </div>
+            <div class="prixfixe-course-item">
+              <span class="course-category">Ana Yemek</span>
+              <span class="course-details">Dinlendirilmiş dana lokum veya kaya levreği ızgara</span>
+            </div>
+            <div class="prixfixe-course-item">
+              <span class="course-category">Özel İkram</span>
+              <span class="course-details">Belçika çikolatalı sufle, meyve piramidi & şampanya ikramı</span>
+            </div>
+          </div>
+          <div class="prixfixe-cta">
+            <a href="/rezervasyon?menu=VIP" class="btn-secondary-editorial" style="width: 100%;">VIP Loca Ayır</a>
+          </div>
         </div>
       </div>
 
-      <!-- A La Carte Items Detailed -->
-      <div style="margin-top: 80px;">
-        <div class="section-header text-center">
-          <span class="section-eyebrow">A LA CARTE DETAYLAR</span>
-          <h2 class="section-title">Şefin Günlük <em>Gurme Seçkisi</em></h2>
+      <!-- A La Carte Dishes Spread -->
+      <div class="section-header text-left" style="margin-top: 80px; margin-bottom: 40px;">
+        <span class="eyebrow">ALAKART LEZZETLER</span>
+        <h2 class="section-title">Mezeler & <em>Ara Sıcaklar</em></h2>
+      </div>
+
+      <div class="alacarte-spread">
+        <div>
+          <h3 class="alacarte-column-header">Soğuk Ege Mezeleri</h3>
+          <div class="alacarte-item">
+            <div class="alacarte-left">
+              <span class="alacarte-dish-name">Köz Patlıcanlı Atom</span>
+              <span class="alacarte-dish-desc">Süzme yoğurt, tereyağında çıtır kuru biberler</span>
+            </div>
+            <span class="alacarte-price">₺195</span>
+          </div>
+          <div class="alacarte-item">
+            <div class="alacarte-left">
+              <span class="alacarte-dish-name">Girit Ezmesi</span>
+              <span class="alacarte-dish-desc">Ezine peyniri, ceviz, taze fesleğen ve fıstık</span>
+            </div>
+            <span class="alacarte-price">₺210</span>
+          </div>
+          <div class="alacarte-item">
+            <div class="alacarte-left">
+              <span class="alacarte-dish-name">Ege Deniz Börülcesi</span>
+              <span class="alacarte-dish-desc">Sızma Ayvalık zeytinyağı, sarımsak ve limon sosu</span>
+            </div>
+            <span class="alacarte-price">₺185</span>
+          </div>
+          <div class="alacarte-item">
+            <div class="alacarte-left">
+              <span class="alacarte-dish-name">Vişneli Yaprak Sarma</span>
+              <span class="alacarte-dish-desc">Kuş üzümü, çam fıstığı, vişne taneleri ve taze nane</span>
+            </div>
+            <span class="alacarte-price">₺220</span>
+          </div>
         </div>
 
-        <div class="meze-dual-grid">
-          <div>
-            <h3 style="font-family: var(--font-display); color: var(--gold-light); margin-bottom: 20px;">Soğuk Mezeler</h3>
-            <div class="meze-item">
-              <div class="meze-title-area">
-                <span class="meze-name">Köz Patlıcanlı Atom</span>
-                <p class="meze-desc">Süzme yoğurt, acı yağda çıtır kurutulmuş biberler</p>
-              </div>
-              <span class="meze-price">₺195</span>
+        <div>
+          <h3 class="alacarte-column-header">Sıcak Başlangıçlar</h3>
+          <div class="alacarte-item">
+            <div class="alacarte-left">
+              <span class="alacarte-dish-name">Tereyağında Karides Güveç</span>
+              <span class="alacarte-dish-desc">Taze deniz karidesleri, sarımsak, pul biber ve domates sos</span>
             </div>
-            <div class="meze-item">
-              <div class="meze-title-area">
-                <span class="meze-name">Girit Ezmesi</span>
-                <p class="meze-desc">Ezine peyniri, ceviz, taze fesleğen, Antep fıstığı</p>
-              </div>
-              <span class="meze-price">₺210</span>
-            </div>
-            <div class="meze-item">
-              <div class="meze-title-area">
-                <span class="meze-name">Ege Deniz Börülcesi</span>
-                <p class="meze-desc">Ayvalık sızma zeytinyağı, sarımsak ve limon</p>
-              </div>
-              <span class="meze-price">₺185</span>
-            </div>
-            <div class="meze-item">
-              <div class="meze-title-area">
-                <span class="meze-name">Vişneli Yaprak Sarma</span>
-                <p class="meze-desc">Kuş üzümlü, çam fıstıklı, taze nane soslu</p>
-              </div>
-              <span class="meze-price">₺220</span>
-            </div>
-            <div class="meze-item">
-              <div class="meze-title-area">
-                <span class="meze-name">Cevizli Muhammara</span>
-                <p class="meze-desc">Antakya usulü biber salçası, nar ekşisi, ceviz</p>
-              </div>
-              <span class="meze-price">₺200</span>
-            </div>
+            <span class="alacarte-price">₺390</span>
           </div>
-
-          <div>
-            <h3 style="font-family: var(--font-display); color: var(--gold-light); margin-bottom: 20px;">Sıcak Başlangıçlar</h3>
-            <div class="meze-item">
-              <div class="meze-title-area">
-                <span class="meze-name">Tereyağında Karides Güveç</span>
-                <p class="meze-desc">Sarımsak, pul biber ve taze domates sosu</p>
-              </div>
-              <span class="meze-price">₺390</span>
+          <div class="alacarte-item">
+            <div class="alacarte-left">
+              <span class="alacarte-dish-name">Çıtır Kalamar Tava</span>
+              <span class="alacarte-dish-desc">Özel marinasyonlu taze kalamar ve cevizli tarator</span>
             </div>
-            <div class="meze-item">
-              <div class="meze-title-area">
-                <span class="meze-name">Çıtır Kalamar Tava</span>
-                <p class="meze-desc">Özel marinasyonlu taze kalamar, cevizli tarator</p>
-              </div>
-              <span class="meze-price">₺420</span>
+            <span class="alacarte-price">₺420</span>
+          </div>
+          <div class="alacarte-item">
+            <div class="alacarte-left">
+              <span class="alacarte-dish-name">Pastırmalı Paçanga Böreği</span>
+              <span class="alacarte-dish-desc">Kayseri çemenli pastırması ve eriyen kaşar</span>
             </div>
-            <div class="meze-item">
-              <div class="meze-title-area">
-                <span class="meze-name">Pastırmalı Paçanga Böreği</span>
-                <p class="meze-desc">Kayseri pastırması, eriyen kaşar ve biberler</p>
-              </div>
-              <span class="meze-price">₺260</span>
+            <span class="alacarte-price">₺260</span>
+          </div>
+          <div class="alacarte-item">
+            <div class="alacarte-left">
+              <span class="alacarte-dish-name">Edirne Usulü Yaprak Ciğer</span>
+              <span class="alacarte-dish-desc">İnce kıyım dana ciğer, sumaklı soğan söğüş ile</span>
             </div>
-            <div class="meze-item">
-              <div class="meze-title-area">
-                <span class="meze-name">Edirne Usulü Yaprak Ciğer</span>
-                <p class="meze-desc">İnce kıyım dana ciğer, sumaklı soğan söğüş ile</p>
-              </div>
-              <span class="meze-price">₺340</span>
-            </div>
-            <div class="meze-item">
-              <div class="meze-title-area">
-                <span class="meze-name">Ahtapot Izgara</span>
-                <p class="meze-desc">Fava yatağında zeytinyağlı ve kekikli ızgara ahtapot</p>
-              </div>
-              <span class="meze-price">₺490</span>
-            </div>
+            <span class="alacarte-price">₺340</span>
           </div>
         </div>
       </div>
     </div>
   </main>
 
-  <!-- Footer -->
-  <footer class="site-footer">
+  <!-- Site Footer -->
+  <footer class="site-footer-editorial">
     <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <div class="brand-logo">
-            <span class="logo-main">HEYBELİ</span>
-            <span class="logo-sub">SAHNE</span>
-          </div>
-          <p>İstanbul'un en iyi canlı sahne ve yeni nesil meyhane buluşma adresi.</p>
+      <div class="footer-top-grid">
+        <div class="footer-brand-column">
+          <span class="footer-brand-title">HEYBELİ</span>
+          <span class="footer-brand-sub">SAHNE & MEYHANE</span>
+          <p class="footer-brand-desc">
+            İstanbul meyhane kültürünün zarafetini, usta sanatçıların canlı performansları ve Ege lezzetleriyle taçlandıran özel bir buluşma adresi.
+          </p>
         </div>
-        <div class="footer-col">
-          <h4>Hızlı Menü</h4>
-          <ul class="footer-links">
+
+        <div>
+          <h4 class="footer-nav-title">Keşfet</h4>
+          <ul class="footer-links-list">
             <li><a href="/">Ana Sayfa</a></li>
             <li><a href="/program">Sahne Takvimi</a></li>
-            <li><a href="/menu">Fiks Menü</a></li>
-            <li><a href="/rezervasyon">Rezervasyon</a></li>
+            <li><a href="/menu">Fiks Menü & Mezeler</a></li>
+            <li><a href="/galeri">Atmosfer & Galeri</a></li>
+            <li><a href="/rezervasyon">Masa Rezervasyonu</a></li>
           </ul>
         </div>
-        <div class="footer-col">
-          <h4>İletişim</h4>
-          <p>📍 Bağdat Caddesi No:184, Kadıköy</p>
-          <p>📞 +90 (216) 444 00 00</p>
-          <p>💬 +90 (530) 000 00 00</p>
+
+        <div>
+          <h4 class="footer-nav-title">Programlar</h4>
+          <ul class="footer-links-list">
+            <li><a href="/program">Cuma Sahne Konserleri</a></li>
+            <li><a href="/program">Cumartesi Akustik Gala</a></li>
+            <li><a href="/program">Çarşamba Kadınlar Matinesi</a></li>
+            <li><a href="/program">Perşembe Geleneksel Fasıl</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-contact-details">
+          <h4 class="footer-nav-title">İletişim</h4>
+          <p>Bağdat Caddesi No:184, Kadıköy / İstanbul</p>
+          <p><a href="tel:+902164440000">+90 (216) 444 00 00</a></p>
+          <p><a href="https://wa.me/905300000000" target="_blank" rel="noopener">+90 (530) 000 00 00 (WhatsApp)</a></p>
+          <p><a href="mailto:rezervasyon@heybelisahne.com">rezervasyon@heybelisahne.com</a></p>
+          <p class="footer-hours-badge">Çarşamba - Pazar: 19:30 - 02:00</p>
         </div>
       </div>
-      <div class="footer-bottom">
+
+      <div class="footer-bottom-bar">
         <p>© 2026 Heybeli Sahne. Tüm hakları saklıdır.</p>
+        <p>Yeni Nesil Meyhane & Canlı Sahne | İstanbul</p>
       </div>
     </div>
   </footer>

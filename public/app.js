@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         eventCards.forEach(card => {
           const cardCat = card.getAttribute('data-category');
           if (category === 'all' || cardCat === category) {
-            card.style.display = 'flex';
+            card.style.display = '';
           } else {
             card.style.display = 'none';
           }
@@ -64,11 +64,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const target = tab.getAttribute('data-target');
         if (target === 'fix') {
-          if (fixMenuSection) fixMenuSection.style.display = 'grid';
+          if (fixMenuSection) fixMenuSection.style.display = '';
           if (alacarteSection) alacarteSection.style.display = 'none';
         } else {
           if (fixMenuSection) fixMenuSection.style.display = 'none';
-          if (alacarteSection) alacarteSection.style.display = 'grid';
+          if (alacarteSection) alacarteSection.style.display = '';
         }
       });
     });
