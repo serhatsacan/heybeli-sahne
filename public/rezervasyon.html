@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Masa & VIP Loca Rezervasyonu | Heybeli Sahne</title>
+  <meta name="description" content="Heybeli Sahne'de canlı konserler, gala geceleri ve fasıl akşamları için VIP loca ve masa rezervasyonunuzu anında online yapın.">
+  <link rel="canonical" href="https://heybelisahne.com/rezervasyon">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Rezervasyon Yap | Heybeli Sahne İstanbul">
+  <meta property="og:description" content="En sevilen sanatçılarla canlı performans gecelerinde yerinizi ayırtın. VIP localar ve fiks menüler sizi bekliyor.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://heybelisahne.com/rezervasyon">
+
+  <!-- Fonts & Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header scrolled" id="header">
+    <div class="container header-container">
+      <a href="/" class="brand-logo" aria-label="Heybeli Sahne Ana Sayfa">
+        <span class="logo-main">HEYBELİ</span>
+        <span class="logo-sub">SAHNE</span>
+        <span class="logo-tagline">YENİ NESİL MEYHANE</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Ana Menü">
+        <ul class="nav-list">
+          <li><a href="/" class="nav-link">Ana Sayfa</a></li>
+          <li><a href="/program" class="nav-link">Sahne Programı</a></li>
+          <li><a href="/menu" class="nav-link">Fiks Menü</a></li>
+          <li><a href="/galeri" class="nav-link">Galeri</a></li>
+          <li><a href="/rezervasyon" class="nav-link active">Rezervasyon</a></li>
+          <li><a href="/iletisim" class="nav-link">İletişim</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="https://wa.me/905300000000" target="_blank" rel="noopener" class="btn-whatsapp-icon">WhatsApp</a>
+        <a href="tel:+902164440000" class="btn-nav-reserve">0216 444 00 00</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Reservation Main -->
+  <main style="padding-top: 140px; padding-bottom: 90px;">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-eyebrow">AYRICALIKLI YERİNİZİ AYIRTIN</span>
+        <h1 class="section-title">Online Masa & <em>VIP Loca Talebi</em></h1>
+        <p class="section-subtitle">Aşağıdaki formu doldurarak rezervasyon talebinizi iletebilirsiniz. Ekibimiz en geç 15 dakika içinde sizi arayarak teyit sağlayacaktır.</p>
+      </div>
+
+      <div class="reservation-grid">
+        <!-- Form Column -->
+        <div class="reservation-card" style="background: rgba(18, 20, 30, 0.95); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+          <form id="pageReservationForm" class="reservation-form">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;" class="grid-2col-mobile">
+              <div class="form-group">
+                <label for="fullName">Adınız Soyadınız *</label>
+                <input type="text" id="fullName" name="name" required placeholder="Örn: Serhat Saçan" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="phone">Telefon Numaranız *</label>
+                <input type="tel" id="phone" name="phone" required placeholder="05XX XXX XX XX" class="form-control">
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;" class="grid-2col-mobile">
+              <div class="form-group">
+                <label for="eventSelect">Program / Sanatçı Seçimi *</label>
+                <select id="eventSelect" name="event" required class="form-control">
+                  <option value="">Lütfen program seçiniz</option>
+                  <option value="Sakiler Gala">Sakiler Canlı Sahne & Gala (25 Eylül Cuma)</option>
+                  <option value="Rubato">Rubato ile Akustik Gece (26 Eylül Cumartesi)</option>
+                  <option value="Serkan Kaya">Serkan Kaya Büyük Gala (2 Ekim Cuma)</option>
+                  <option value="Kadınlar Matinesi">Dilan Çıtak Kadınlar Matinesi (Pazar Gündüz)</option>
+                  <option value="Heybeli Fasıl Heyeti">Heybeli Fasıl Gecesi (Her Perşembe)</option>
+                  <option value="Standart Akşam">Diğer Günler / Standart Meyhane</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="resDate">Rezervasyon Tarihi *</label>
+                <input type="date" id="resDate" name="date" required class="form-control">
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;" class="grid-2col-mobile">
+              <div class="form-group">
+                <label for="guestCount">Kişi Sayısı *</label>
+                <select id="guestCount" name="guests" required class="form-control">
+                  <option value="2">2 Kişi</option>
+                  <option value="3-4">3 - 4 Kişi</option>
+                  <option value="5-6">5 - 6 Kişi</option>
+                  <option value="7-10">7 - 10 Kişi (Grup)</option>
+                  <option value="10+">10 Kişi ve Üzeri (VIP Şirket / Özel Davet)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="seatingArea">Masa & Bölüm Tercihi *</label>
+                <select id="seatingArea" name="area" required class="form-control">
+                  <option value="vip-sahne">VIP Sahne Önü Masalar (Sahneye Sıfır)</option>
+                  <option value="orta-salon">Orta Salon (Geniş Görüş Açısı)</option>
+                  <option value="loca">Özel Balkon Locası (Maksimum Konfor)</option>
+                  <option value="bistro">Yüksek Bistro / Kokteyl Alanı</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 20px;">
+              <label for="menuChoice">Fiks Menü Tercihi</label>
+              <select id="menuChoice" name="menu" class="form-control">
+                <option value="vip">VIP Gala Menüsü (Kuzu İncik & 8 Meze & Limitsiz Meşrubat)</option>
+                <option value="klasik" selected>Klasik Ege Sahne Menüsü (Dana Antrikot / Levrek & 8 Meze)</option>
+                <option value="matine">Matine Özel Fiks Menü</option>
+              </select>
+            </div>
+
+            <div class="form-group" style="margin-top: 20px;">
+              <label for="notes">Özel Notlar veya Kutlama Talebi</label>
+              <textarea id="notes" name="notes" rows="3" placeholder="Doğum günü pastası, evlilik teklifi, özel masa süslemesi veya alerjen bilgisi..." class="form-control"></textarea>
+            </div>
+
+            <button type="submit" class="btn-hero-primary" style="width: 100%; margin-top: 28px; padding: 18px; font-size: 1.05rem; justify-content: center;">
+              Rezervasyon Talebini Gönder
+            </button>
+            <p id="resStatusMsg" style="display: none; margin-top: 16px; padding: 14px; border-radius: 10px; font-size: 0.95rem; text-align: center;"></p>
+          </form>
+        </div>
+
+        <!-- Info Column -->
+        <div class="reservation-info-col" style="display: flex; flex-direction: column; gap: 24px;">
+          <!-- Quick Call Card -->
+          <div style="background: rgba(255, 42, 109, 0.08); border: 1px solid rgba(255, 42, 109, 0.25); border-radius: 18px; padding: 28px;">
+            <span style="display: inline-block; background: #ff2a6d; color: #fff; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 12px;">HIZLI İLETİŞİM</span>
+            <h3 style="font-family: 'Cinzel', serif; font-size: 1.4rem; color: #fff; margin-bottom: 8px;">Anında Telefonla Rezervasyon</h3>
+            <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem; margin-bottom: 18px; line-height: 1.6;">VIP loca tahsisi ve aynı gün rezervasyonları için doğrudan rezervasyon hattımızı arayabilirsiniz.</p>
+            <a href="tel:+902164440000" style="display: block; background: #ff2a6d; color: #fff; text-align: center; padding: 14px; border-radius: 12px; font-weight: 700; text-decoration: none; font-size: 1.1rem; box-shadow: 0 10px 25px rgba(255,42,109,0.3);">
+              📞 0216 444 00 00
+            </a>
+            <a href="https://wa.me/905300000000?text=Merhaba,%20Heybeli%20Sahne%20için%20rezervasyon%20yaptırmak%20istiyorum." target="_blank" rel="noopener" style="display: block; margin-top: 10px; background: rgba(37, 211, 102, 0.15); border: 1px solid #25d366; color: #25d366; text-align: center; padding: 12px; border-radius: 12px; font-weight: 700; text-decoration: none; font-size: 0.95rem;">
+              💬 WhatsApp'tan Yazın (0530 000 00 00)
+            </a>
+          </div>
+
+          <!-- Venue Policies -->
+          <div style="background: rgba(18, 20, 30, 0.85); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 28px;">
+            <h3 style="font-family: 'Cinzel', serif; font-size: 1.25rem; color: #fff; margin-bottom: 16px;">Rezervasyon & Giriş Kuralları</h3>
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; color: rgba(255,255,255,0.75); font-size: 0.9rem; line-height: 1.6;">
+              <li style="display: flex; gap: 12px; align-items: flex-start;">
+                <span style="color: #f5a623; font-weight: bold;">✓</span>
+                <span><strong>Kapı Açılışı:</strong> Akşam programlarımızda kapı 19:30'da açılır. Fasıl heyeti 20:30'da, ana sahne performansı 21:45'te başlar.</span>
+              </li>
+              <li style="display: flex; gap: 12px; align-items: flex-start;">
+                <span style="color: #f5a623; font-weight: bold;">✓</span>
+                <span><strong>Kıyafet Kuralı:</strong> Mekanımızda şık ve özenli giyim (Smart Casual) kuralı uygulanmaktadır. Spor şort ve terlikle giriş kabul edilmemektedir.</span>
+              </li>
+              <li style="display: flex; gap: 12px; align-items: flex-start;">
+                <span style="color: #f5a623; font-weight: bold;">✓</span>
+                <span><strong>Vale Park Hizmeti:</strong> Özel vale ekibimiz mekan girişinde araçlarınızı teslim almaktadır.</span>
+              </li>
+              <li style="display: flex; gap: 12px; align-items: flex-start;">
+                <span style="color: #f5a623; font-weight: bold;">✓</span>
+                <span><strong>Masa Teyidi:</strong> Rezervasyon günü saat 16:00'a kadar teyit alınamayan masalar bekleme listesindeki misafirlere devredilmektedir.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <span class="logo-main">HEYBELİ</span>
+            <span class="logo-sub">SAHNE</span>
+          </div>
+          <p>İstanbul'un en iyi canlı sahne ve yeni nesil meyhane buluşma adresi.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Hızlı Menü</h4>
+          <ul class="footer-links">
+            <li><a href="/">Ana Sayfa</a></li>
+            <li><a href="/program">Sahne Takvimi</a></li>
+            <li><a href="/menu">Fiks Menü</a></li>
+            <li><a href="/galeri">Galeri</a></li>
+            <li><a href="/rezervasyon">Rezervasyon</a></li>
+            <li><a href="/iletisim">İletişim</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>İletişim & Rezervasyon</h4>
+          <p>📍 Bağdat Caddesi No:184, Kadıköy / İstanbul</p>
+          <p>📞 +90 (216) 444 00 00</p>
+          <p>💬 +90 (530) 000 00 00</p>
+          <p>✉️ rezervasyon@heybelisahne.com</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Heybeli Sahne. Tüm hakları saklıdır.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/app.js"></script>
+  <script>
+    // Autofill event from query param if present
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const eventParam = urlParams.get('event');
+      if (eventParam) {
+        const select = document.getElementById('eventSelect');
+        for (let i = 0; i < select.options.length; i++) {
+          if (select.options[i].text.toLowerCase().includes(eventParam.toLowerCase())) {
+            select.selectedIndex = i;
+            break;
+          }
+        }
+      }
+
+      // Handle reservation form submission
+      const form = document.getElementById('pageReservationForm');
+      const statusMsg = document.getElementById('resStatusMsg');
+      if (form) {
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const submitBtn = form.querySelector('button[type="submit"]');
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'İşleniyor...';
+
+          const payload = {
+            name: form.name.value,
+            phone: form.phone.value,
+            event: form.event.value,
+            date: form.date.value,
+            guests: form.guests.value,
+            area: form.area.value,
+            menu: form.menu.value,
+            notes: form.notes.value
+          };
+
+          try {
+            const res = await fetch('/api/reservation', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+            const data = await res.json();
+            if (data.success) {
+              statusMsg.style.display = 'block';
+              statusMsg.style.background = 'rgba(46, 213, 115, 0.2)';
+              statusMsg.style.border = '1px solid #2ed573';
+              statusMsg.style.color = '#2ed573';
+              statusMsg.innerHTML = `<strong>Talebiniz Alındı! (Takip No: #${data.reservationId})</strong><br>Rezervasyon ekibimiz teyit için kısa süre içinde sizinle iletişime geçecektir.`;
+              form.reset();
+            } else {
+              throw new Error(data.message || 'Hata oluştu');
+            }
+          } catch (err) {
+            statusMsg.style.display = 'block';
+            statusMsg.style.background = 'rgba(255, 71, 87, 0.2)';
+            statusMsg.style.border = '1px solid #ff4757';
+            statusMsg.style.color = '#ff4757';
+            statusMsg.textContent = 'Bir hata oluştu. Lütfen doğrudan telefon ile iletişime geçiniz.';
+          } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Rezervasyon Talebini Gönder';
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
