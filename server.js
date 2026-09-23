@@ -1,3 +1,4 @@
+const compression = require('compression');
 const express = require('express');
 const path = require('path');
 const { UPCOMING_EVENTS, MENU_DATA, VENUE_INFO } = require('./events-data');
@@ -6,22 +7,58 @@ const app = express();
 const PORT = process.env.PORT || 3002;
 const START_TIME = new Date();
 
-// Middleware
+// Performance: Gzip Compression
+app.use(compression({
+  threshold: 1024,
+  filter: (req, res) => {
+    if (req.headers['x-no-compression']) return false;
+    return compression.filter(req, res);
+  }
+}));
+
+// Security & SEO Headers
+app.use((req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  next();
+});
+
+// Middleware & Static Assets with aggressive caching for assets
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'), {
+  maxAge: '7d',
+  etag: true,
+  lastModified: true,
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.html')) {
+      res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
+    } else if (filePath.match(/\.(css|js|woff2|woff|ttf|png|jpg|jpeg|webp|svg|ico)$/)) {
+      res.setHeader('Cache-Control', 'public, max-age=604800, immutable');
+    }
+  }
+}));
 
 // SEO & AI Crawlers Static Routes
 app.get('/sitemap.xml', (req, res) => {
+  res.setHeader('Content-Type', 'application/xml');
   res.sendFile(path.join(__dirname, 'public', 'sitemap.xml'));
 });
 
 app.get('/robots.txt', (req, res) => {
+  res.setHeader('Content-Type', 'text/plain; charset=utf-8');
   res.sendFile(path.join(__dirname, 'public', 'robots.txt'));
 });
 
 app.get('/llms.txt', (req, res) => {
+  res.setHeader('Content-Type', 'text/plain; charset=utf-8');
   res.sendFile(path.join(__dirname, 'public', 'llms.txt'));
+});
+
+app.get('/llms-full.txt', (req, res) => {
+  res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+  res.sendFile(path.join(__dirname, 'public', 'llms-full.txt'));
 });
 
 // Clean URLs for Pages

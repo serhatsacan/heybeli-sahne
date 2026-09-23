@@ -2,39 +2,219 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Heybeli Sahne | Yeni Nesil Meyhane & Canlı Performans | İstanbul</title>
-  <meta name="description" content="Heybeli Sahne: İstanbul'un seçkin yeni nesil meyhanesi ve canlı performans sahnesi. Ünlü sanatçıların gala konserleri, usta şeflerden gurme Ege mezeleri ve VIP masa deneyimi.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Heybeli Sahne | Yeni Nesil Meyhane & Canlı Performans Sahnesi | Kadıköy İstanbul</title>
+  <meta name="description" content="Heybeli Sahne: Kadıköy Bağdat Caddesi'nin en seçkin yeni nesil meyhanesi ve canlı performans sahnesi. Ünlü sanatçıların gala konserleri, usta şeflerden gurme Ege mezeleri ve VIP masa deneyimi.">
+  <meta name="keywords" content="Heybeli Sahne, Kadıköy meyhane, Bağdat Caddesi canlı müzik, İstanbul yeni nesil meyhane, fiks menü, canlı sahne, fasıl, gala konserleri, Sakiler, Rubato, Serkan Kaya, Anadolu Yakası gece hayatı">
+  <meta name="author" content="Heybeli Sahne">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <link rel="canonical" href="https://heybelisahne.com/">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Heybeli Sahne | Yeni Nesil Meyhane & Canlı Performans">
-  <meta property="og:description" content="İstanbul'da kaliteli bir akşam yemeği ve seçkin canlı sahne deneyimi. Sahne takvimi ve masa rezervasyonu.">
+  <!-- Geo & Local SEO Tags (GEO) -->
+  <meta name="geo.region" content="TR-34">
+  <meta name="geo.placename" content="Kadıköy, İstanbul">
+  <meta name="geo.position" content="40.963495;29.057388">
+  <meta name="ICBM" content="40.963495, 29.057388">
+
+  <!-- Mobile Browser Theme -->
+  <meta name="theme-color" content="#0B0C0E">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <!-- Open Graph & Social Cards -->
+  <meta property="og:site_name" content="Heybeli Sahne">
+  <meta property="og:title" content="Heybeli Sahne | Yeni Nesil Meyhane & Canlı Performans | Kadıköy">
+  <meta property="og:description" content="İstanbul Bağdat Caddesi'nde seçkin canlı sahne, gurme Ege mezeleri ve unutulmaz fasıl akşamları. Sahne takvimi ve masa rezervasyonu.">
   <meta property="og:type" content="restaurant">
   <meta property="og:url" content="https://heybelisahne.com/">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta property="og:locale" content="tr_TR">
 
-  <!-- Schema.org JSON-LD -->
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Heybeli Sahne | Yeni Nesil Meyhane & Canlı Performans">
+  <meta name="twitter:description" content="Bağdat Caddesi'nde usta sanatçılar, gurme lezzetler ve seçkin meyhane sofrası.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80">
+
+  <!-- Schema.org Comprehensive Graph: Restaurant, MusicVenue, Events, FAQ, Breadcrumbs -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Restaurant",
-    "name": "Heybeli Sahne",
-    "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80",
-    "telephone": "+902164440000",
-    "email": "rezervasyon@heybelisahne.com",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Bağdat Caddesi No:184",
-      "addressLocality": "Kadıköy",
-      "addressRegion": "İstanbul",
-      "addressCountry": "TR"
-    },
-    "servesCuisine": "Meyhane, Ege Mutfağı, Akdeniz",
-    "priceRange": "₺₺₺"
+    "@graph": [
+      {
+        "@type": ["Restaurant", "MusicVenue", "LocalBusiness"],
+        "@id": "https://heybelisahne.com/#venue",
+        "name": "Heybeli Sahne",
+        "alternateName": "Heybeli Sahne & Yeni Nesil Meyhane",
+        "url": "https://heybelisahne.com/",
+        "logo": "https://heybelisahne.com/assets/logo.png",
+        "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80",
+        "telephone": "+902164440000",
+        "email": "rezervasyon@heybelisahne.com",
+        "priceRange": "₺₺₺",
+        "servesCuisine": ["Meyhane", "Ege Mutfağı", "Akdeniz", "Geleneksel Türk Mezeleri"],
+        "acceptsReservations": "true",
+        "hasMenu": "https://heybelisahne.com/menu",
+        "hasMap": "https://maps.google.com/?q=Heybeli+Sahne+Bagdat+Caddesi+Kadikoy",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Bağdat Caddesi No:184",
+          "addressLocality": "Kadıköy",
+          "addressRegion": "İstanbul",
+          "postalCode": "34728",
+          "addressCountry": "TR"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 40.963495,
+          "longitude": 29.057388
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            "opens": "19:30",
+            "closes": "02:00"
+          }
+        ],
+        "amenityFeature": [
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Canlı Müzik & Sahne",
+            "value": "true"
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Vale Park Hizmeti",
+            "value": "true"
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "VIP Loca Alanı",
+            "value": "true"
+          }
+        ]
+      },
+      {
+        "@type": "Event",
+        "name": "Sakiler — Canlı Sahne Gala Konseri",
+        "startDate": "2026-10-09T21:45:00+03:00",
+        "endDate": "2026-10-10T01:30:00+03:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "location": {
+          "@id": "https://heybelisahne.com/#venue"
+        },
+        "image": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80",
+        "description": "Modern pop ve alaturka tınılarıyla Sakiler, Heybeli Sahne'de unutulmaz bir cuma gecesi vadediyor.",
+        "performer": {
+          "@type": "MusicGroup",
+          "name": "Sakiler"
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": "https://heybelisahne.com/rezervasyon",
+          "price": "1950",
+          "priceCurrency": "TRY",
+          "availability": "https://schema.org/InStock",
+          "validFrom": "2026-09-01T00:00:00+03:00"
+        }
+      },
+      {
+        "@type": "Event",
+        "name": "Rubato — Akustik Meyhane Gecesi",
+        "startDate": "2026-10-10T21:45:00+03:00",
+        "endDate": "2026-10-11T01:30:00+03:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "location": {
+          "@id": "https://heybelisahne.com/#venue"
+        },
+        "image": "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=1200&q=80",
+        "description": "Akustik enstrümanların virtüözleri Rubato ile hüzün ve neşenin buluştuğu cumartesi galası.",
+        "performer": {
+          "@type": "MusicGroup",
+          "name": "Rubato"
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": "https://heybelisahne.com/rezervasyon",
+          "price": "2250",
+          "priceCurrency": "TRY",
+          "availability": "https://schema.org/InStock"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Heybeli Sahne nerede yer alıyor ve ulaşım nasıl sağlanır?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Heybeli Sahne, Anadolu Yakası'nın kalbinde Kadıköy Bağdat Caddesi No:184 adresindedir. Marmaray Suadiye ve Erenköy duraklarına, minibüs caddesine ve sahil yoluna yürüme mesafesindedir. Misafirlerimize özel vale ve otopark hizmetimiz mevcuttur."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Fiks menü seçenekleri ve kişi başı ücretler nelerdir?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Heybeli Sahne'de 8 çeşit zengin soğuk Ege mezesi, 2 çeşit sıcak ara sıcak, seçmeli gurme ana yemek (Levrek ızgara, Antrikot veya Kuzu Tandır) ve tatlı/meyve ikramından oluşan fiks menüler sunulmaktadır. Kişi başı fiks menü fiyatlarımız 1.450 ₺ ile 2.750 ₺ arasında (sahne alan sanatçı ve gala gecesine göre) değişkenlik gösterir."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Canlı müzik ve konserler saat kaçta başlıyor?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Kapı açılışımız 19:30'dadır. 20:30 itibarıyla geleneksel ve modern fasıl dinletimiz başlar. Ana sahne performansları ve sanatçı konserleri ise 21:45'te başlayarak 01:30'a kadar kesintisiz devam eder."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Masa rezervasyonu nasıl yapılır ve ön ödeme gerekli midir?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Web sitemiz üzerinden online form doldurarak, +90 (216) 444 00 00 telefon hattımızdan veya resmi WhatsApp hattımızdan saniyeler içinde rezervasyon yapabilirsiniz. Gala konserleri ve VIP localarda teyit amaçlı ön kaparo rica edilmektedir."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Kıyafet kuralı (dress code) veya yaş sınırı var mı?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Mekanımızda nezih ve seçkin atmosferi korumak adına 'Smart Casual / Şık Akşam Giyimi' kuralı uygulanmaktadır. Canlı sahne ve alkollü servis kapsamında yasal 18 yaş sınırı bulunmaktadır."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Özel kutlamalar, doğum günü veya kurumsal etkinlikler düzenlenebilir mi?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Evet. Doğum günleri, evlilik teklifleri, bekarlığa veda ve kurumsal şirket yemekleri için sahne önü masalar veya özel VIP loca tahsis edilmekte; kişiselleştirilmiş pasta ve servis organizasyonu sağlanmaktadır."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Ana Sayfa",
+            "item": "https://heybelisahne.com/"
+          }
+        ]
+      }
+    ]
   }
   </script>
 
-  <!-- Typography: Cormorant Garamond, Playfair Display & Plus Jakarta Sans -->
+  <!-- Performance: Preconnect & Font Display Swap -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -86,13 +266,18 @@
         <a href="#rezervasyon" class="btn-primary-editorial" style="width: 100%;">Masa Rezervasyonu</a>
         <a href="https://wa.me/905300000000" target="_blank" rel="noopener" class="btn-secondary-editorial" style="width: 100%;">WhatsApp Hattı</a>
       </div>
+      <div class="mobile-menu-info">
+        <p>📍 Bağdat Caddesi No:184, Kadıköy / İstanbul</p>
+        <p>📞 <a href="tel:+902164440000">+90 (216) 444 00 00</a></p>
+        <p>⏰ Çarşamba - Pazar: 19:30 - 02:00</p>
+      </div>
     </div>
   </header>
 
   <!-- Hero Section (Cinematic Editorial Atmosphere) -->
   <section class="hero-editorial" id="hero">
     <div class="hero-background-wrap">
-      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=2000&q=85" alt="Heybeli Sahne Restoran ve Sahne Atmosferi">
+      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=2000&q=85" alt="Heybeli Sahne Restoran ve Sahne Atmosferi" width="2000" height="1200" fetchpriority="high" decoding="async">
     </div>
     <div class="hero-editorial-overlay"></div>
 
@@ -148,7 +333,7 @@
             <span class="schedule-date-sub">21:30 Canlı Sahne</span>
           </div>
           <div class="schedule-thumb-col">
-            <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=600&q=80" alt="Sakiler Canlı Performans">
+            <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=600&q=80" alt="Sakiler Canlı Performans" width="600" height="400" loading="lazy" decoding="async">
           </div>
           <div class="schedule-artist-col">
             <h3 class="schedule-artist-name">Sakiler</h3>
@@ -170,7 +355,7 @@
             <span class="schedule-date-sub">22:00 Akustik Gala</span>
           </div>
           <div class="schedule-thumb-col">
-            <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=600&q=80" alt="Rubato Canlı Performans">
+            <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=600&q=80" alt="Rubato Canlı Performans" width="600" height="400" loading="lazy" decoding="async">
           </div>
           <div class="schedule-artist-col">
             <h3 class="schedule-artist-name">Rubato</h3>
@@ -192,7 +377,7 @@
             <span class="schedule-date-sub">21:30 Büyük Gala</span>
           </div>
           <div class="schedule-thumb-col">
-            <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=600&q=80" alt="Serkan Kaya">
+            <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=600&q=80" alt="Serkan Kaya" width="600" height="400" loading="lazy" decoding="async">
           </div>
           <div class="schedule-artist-col">
             <h3 class="schedule-artist-name">Serkan Kaya</h3>
@@ -214,7 +399,7 @@
             <span class="schedule-date-sub">19:30 Matine Başlangıcı</span>
           </div>
           <div class="schedule-thumb-col">
-            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=600&q=80" alt="Kadınlar Matinesi">
+            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=600&q=80" alt="Kadınlar Matinesi" width="600" height="400" loading="lazy" decoding="async">
           </div>
           <div class="schedule-artist-col">
             <h3 class="schedule-artist-name">DJ Ece & Oryantal Şov</h3>
@@ -236,7 +421,7 @@
             <span class="schedule-date-sub">21:30 Canlı Performans</span>
           </div>
           <div class="schedule-thumb-col">
-            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80" alt="Dilan Çıtak">
+            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80" alt="Dilan Çıtak" width="600" height="400" loading="lazy" decoding="async">
           </div>
           <div class="schedule-artist-col">
             <h3 class="schedule-artist-name">Dilan Çıtak</h3>
@@ -258,7 +443,7 @@
             <span class="schedule-date-sub">20:00 Fasıl Başlangıcı</span>
           </div>
           <div class="schedule-thumb-col">
-            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80" alt="Fasıl Heyeti">
+            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80" alt="Fasıl Heyeti" width="600" height="400" loading="lazy" decoding="async">
           </div>
           <div class="schedule-artist-col">
             <h3 class="schedule-artist-name">Heybeli Fasıl Heyeti</h3>
@@ -499,10 +684,10 @@
 
         <div class="story-visuals-asymmetric">
           <div class="story-primary-image">
-            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80" alt="Meyhane Sofrası ve Zarafet">
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80" alt="Meyhane Sofrası ve Zarafet" width="900" height="600" loading="lazy" decoding="async">
           </div>
           <div class="story-secondary-image">
-            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80" alt="Akustik Canlı Performans">
+            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80" alt="Akustik Canlı Performans" width="600" height="400" loading="lazy" decoding="async">
           </div>
         </div>
       </div>
@@ -592,6 +777,85 @@
     </div>
   </section>
 
+  <!-- FAQ Section (AEO: Sıkça Sorulan Sorular) -->
+  <section class="section-faq" id="sss">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="eyebrow">MERAK EDİLENLER</span>
+        <h2 class="section-title">Sıkça Sorulan <em>Sorular</em></h2>
+        <p class="section-subtitle">Heybeli Sahne deneyiminiz, menülerimiz, sahne akışı ve rezervasyon kuralları hakkında bilmek istediğiniz tüm detaylar.</p>
+      </div>
+
+      <div class="faq-accordion">
+        <!-- FAQ Item 1 -->
+        <article class="faq-item active">
+          <button class="faq-question" type="button" aria-expanded="true">
+            <span>Heybeli Sahne nerede yer alıyor ve ulaşım nasıl sağlanır?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Heybeli Sahne, İstanbul Anadolu Yakası'nın en prestijli bulvarında; <strong>Kadıköy Bağdat Caddesi No:184</strong> adresindedir. Suadiye ve Erenköy Marmaray istasyonlarına, minibüs caddesine ve sahil yoluna çok yakın mesafededir. Kendi araçlarıyla teşrif eden konuklarımız için özel vale park ve güvenli otopark hizmetimiz mevcuttur.</p>
+          </div>
+        </article>
+
+        <!-- FAQ Item 2 -->
+        <article class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>Fiks menü seçenekleri ve kişi başı ücretler nelerdir?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Heybeli Sahne'de 8 çeşit zengin soğuk Ege mezesi, 2 çeşit sıcak ara sıcak (paçanga böreği, güveçte tereyağlı karides), seçmeli gurme ana yemek (Levrek ızgara, Antrikot veya Kuzu Tandır) ile tatlı/meyve ikramından oluşan fiks menüler sunulmaktadır. Kişi başı fiks menü fiyatlarımız 1.450 ₺ ile 2.750 ₺ arasında (sahne alan sanatçı ve gala gecesine göre) değişkenlik göstermektedir.</p>
+          </div>
+        </article>
+
+        <!-- FAQ Item 3 -->
+        <article class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>Canlı müzik ve konserler saat kaçta başlıyor?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Kapı açılışımız 19:30'da gerçekleşir. 20:30 itibarıyla geleneksel ve modern fasıl dinletimiz başlar. Ana sahne performansları ve sanatçı konserleri ise 21:45'te sahne almakta, eğlence 01:30'a kadar kesintisiz devam etmektedir.</p>
+          </div>
+        </article>
+
+        <!-- FAQ Item 4 -->
+        <article class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>Masa rezervasyonu nasıl yapılır ve ön ödeme gerekli midir?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Web sitemiz üzerinden online rezervasyon formunu doldurarak, +90 (216) 444 00 00 telefon hattımızdan veya doğrudan WhatsApp hattımızdan saniyeler içinde masanızı ayırtabilirsiniz. Gala konserleri ve VIP loca rezervasyonlarında teyit amacıyla ön kaparo talep edilmektedir.</p>
+          </div>
+        </article>
+
+        <!-- FAQ Item 5 -->
+        <article class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>Kıyafet kuralı (dress code) veya yaş sınırı var mı?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Mekanımızda nezih, modern ve şık bir atmosferi korumak adına 'Smart Casual / Şık Akşam Giyimi' kuralı uygulanmaktadır. Canlı performanslar ve alkollü servis kapsamında yasal 18 yaş sınırı bulunmaktadır.</p>
+          </div>
+        </article>
+
+        <!-- FAQ Item 6 -->
+        <article class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>Özel kutlamalar, doğum günü veya kurumsal etkinlikler düzenlenebilir mi?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Evet. Doğum günleri, evlilik teklifleri, bekarlığa veda ve kurumsal şirket yemekleri için sahne önü masalar veya özel VIP loca tahsis edilmekte; kişiselleştirilmiş pasta kesimi ve servis organizasyonu özenle sağlanmaktadır.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- Site Footer (Refined Grandeur & Editorial Spacing) -->
   <footer class="site-footer-editorial">
     <div class="container">
@@ -600,7 +864,7 @@
           <span class="footer-brand-title">HEYBELİ</span>
           <span class="footer-brand-sub">SAHNE & MEYHANE</span>
           <p class="footer-brand-desc">
-            İstanbul meyhane kültürünün zarafetini, usta sanatçıların canlı performansları ve Ege lezzetleriyle taçlandıran özel bir buluşma adresi.
+            İstanbul meyhane kültürünün zarafetini, Kadıköy Bağdat Caddesi'nde usta sanatçıların canlı performansları ve Ege lezzetleriyle taçlandıran özel bir buluşma adresi.
           </p>
         </div>
 
@@ -612,21 +876,23 @@
             <li><a href="/menu">Fiks Menü & Mezeler</a></li>
             <li><a href="/galeri">Atmosfer & Galeri</a></li>
             <li><a href="/rezervasyon">Masa Rezervasyonu</a></li>
+            <li><a href="#sss">Sıkça Sorulan Sorular</a></li>
           </ul>
         </div>
 
         <div>
-          <h4 class="footer-nav-title">Programlar</h4>
+          <h4 class="footer-nav-title">Bölgeler & Sahne</h4>
           <ul class="footer-links-list">
-            <li><a href="/program">Cuma Sahne Konserleri</a></li>
-            <li><a href="/program">Cumartesi Akustik Gala</a></li>
-            <li><a href="/program">Çarşamba Kadınlar Matinesi</a></li>
-            <li><a href="/program">Perşembe Geleneksel Fasıl</a></li>
+            <li><a href="/program">Kadıköy Canlı Müzik</a></li>
+            <li><a href="/program">Bağdat Caddesi Meyhane</a></li>
+            <li><a href="/program">Suadiye / Erenköy Sahne</a></li>
+            <li><a href="/program">Fasıl & Gala Geceleri</a></li>
+            <li><a href="/program">Kadınlar Matinesi</a></li>
           </ul>
         </div>
 
         <div class="footer-contact-details">
-          <h4 class="footer-nav-title">İletişim</h4>
+          <h4 class="footer-nav-title">İletişim & Konum</h4>
           <p>Bağdat Caddesi No:184, Kadıköy / İstanbul</p>
           <p><a href="tel:+902164440000">+90 (216) 444 00 00</a></p>
           <p><a href="https://wa.me/905300000000" target="_blank" rel="noopener">+90 (530) 000 00 00 (WhatsApp)</a></p>
@@ -636,11 +902,26 @@
       </div>
 
       <div class="footer-bottom-bar">
-        <p>© 2026 Heybeli Sahne. Tüm hakları saklıdır.</p>
+        <p>© 2026 Heybeli Sahne. Tüm hakları saklıdır. Kadıköy, Bağdat Caddesi / İstanbul.</p>
         <p>Yeni Nesil Meyhane & Canlı Sahne | İstanbul</p>
       </div>
     </div>
   </footer>
+
+  <!-- Sticky Mobile Action Bar (Fast Direct Conversion) -->
+  <nav class="mobile-bottom-bar" aria-label="Hızlı İletişim Menüsü">
+    <a href="tel:+902164440000" class="mobile-bar-btn mobile-bar-call" aria-label="Mekanı Ara">
+      <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2z"/></svg>
+      <span>Hemen Ara</span>
+    </a>
+    <a href="https://wa.me/905300000000?text=Merhaba,%20Heybeli%20Sahne%20i%C3%A7in%20bilgi%20ve%20masa%20rezervasyonu%20almak%20istiyorum." target="_blank" rel="noopener" class="mobile-bar-btn mobile-bar-whatsapp" aria-label="WhatsApp Sohbeti">
+      <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm5.8 14.28c-.24.68-1.39 1.3-1.92 1.38-.5.08-1.13.11-3.64-.93-2.14-.88-3.52-3.06-3.63-3.21-.11-.15-.86-1.14-.86-2.18s.54-1.55.74-1.76c.19-.21.43-.26.57-.26.15 0 .29 0 .42.01.13.01.32-.05.5.38.19.45.64 1.57.7 1.69.06.12.09.26.02.41-.08.15-.12.24-.24.38-.12.15-.25.32-.36.43-.12.12-.24.26-.1.5.14.24.63 1.04 1.35 1.68.93.83 1.71 1.09 1.95 1.21.24.12.38.1.53-.06.14-.17.62-.72.78-.97.17-.24.33-.21.55-.12.22.08 1.41.67 1.65.79.24.12.4.17.46.28.06.11.06.63-.18 1.31z"/></svg>
+      <span>WhatsApp</span>
+    </a>
+    <a href="#rezervasyon" class="mobile-bar-btn mobile-bar-book" aria-label="Masa Rezervasyonu">
+      <span>Masa Ayır</span>
+    </a>
+  </nav>
 
   <script src="/app.js"></script>
 </body>

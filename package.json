@@ -9,6 +9,7 @@
     "deploy": "git push origin main && ssh root@164.92.251.18 'cd /var/www/heybeli-sahne && git pull origin main && npm install --production && pm2 reload heybeli-sahne'"
   },
   "dependencies": {
+    "compression": "^1.8.2",
     "express": "^4.21.2"
   },
   "engines": {

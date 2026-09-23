@@ -13,16 +13,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Mobile Menu
+  // Mobile Menu Drawer
   if (mobileToggle && mobileMenu) {
     mobileToggle.addEventListener('click', () => {
-      const isVisible = mobileMenu.style.display === 'block';
-      mobileMenu.style.display = isVisible ? 'none' : 'block';
+      const isActive = mobileMenu.classList.toggle('active');
+      mobileToggle.classList.toggle('active', isActive);
+      document.body.style.overflow = isActive ? 'hidden' : '';
     });
 
-    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    document.querySelectorAll('.mobile-nav-link, .mobile-menu-actions a').forEach(link => {
       link.addEventListener('click', () => {
-        mobileMenu.style.display = 'none';
+        mobileMenu.classList.remove('active');
+        mobileToggle.classList.remove('active');
+        document.body.style.overflow = '';
       });
     });
   }
@@ -92,6 +95,25 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // FAQ Accordion Toggle
+  const faqQuestions = document.querySelectorAll('.faq-question');
+  if (faqQuestions.length > 0) {
+    faqQuestions.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('active');
+        
+        // Close all items
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+        
+        // Toggle current item
+        if (!isOpen) {
+          item.classList.add('active');
+        }
+      });
+    });
+  }
 
   // Reservation Form Submission
   const reserveForm = document.getElementById('reservation-form');
