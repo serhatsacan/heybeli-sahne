@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yönetici Paneli | Heybeli Sahne</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-base: #0B0C0E;
+      --bg-surface: #14171E;
+      --bg-surface-elevated: #1B1F2A;
+      --bg-hover: #222736;
+      --gold-primary: #C49A55;
+      --gold-light: #DFC088;
+      --gold-dark: #8F6928;
+      --text-main: #ECEEF2;
+      --text-muted: #8E95A5;
+      --text-subtle: #5C6272;
+      --border-subtle: rgba(255, 255, 255, 0.07);
+      --border-gold: rgba(196, 154, 85, 0.3);
+      --badge-new: #3B82F6;
+      --badge-success: #10B981;
+      --badge-danger: #EF4444;
+      --badge-wa: #25D366;
+      --badge-call: #38BDF8;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Auth Overlay */
+    #auth-screen {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, #1B1F2A 0%, #0B0C0E 100%);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .auth-card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-lg);
+      padding: 40px 32px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+      text-align: center;
+      animation: fadeIn 0.4s ease-out;
+    }
+
+    .auth-brand {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      letter-spacing: 0.15em;
+      color: var(--gold-primary);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .auth-subtitle {
+      color: var(--text-muted);
+      font-size: 13px;
+      margin-bottom: 30px;
+    }
+
+    .auth-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .input-field {
+      width: 100%;
+      background: var(--bg-base);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .input-field:focus {
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 0 3px rgba(196, 154, 85, 0.15);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 18px;
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
+      color: #0A0A0C;
+    }
+
+    .btn-gold:hover {
+      background: linear-gradient(135deg, #FFF, var(--gold-light));
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--text-main);
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .btn-danger-outline {
+      background: transparent;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #F87171;
+    }
+
+    .btn-danger-outline:hover {
+      background: rgba(239, 68, 68, 0.1);
+      border-color: #EF4444;
+    }
+
+    .btn-sm {
+      padding: 6px 10px;
+      font-size: 12px;
+      border-radius: var(--radius-sm);
+    }
+
+    .auth-error {
+      color: #F87171;
+      font-size: 13px;
+      display: none;
+      margin-top: 8px;
+    }
+
+    /* Admin Layout */
+    #admin-app {
+      display: none;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .admin-header {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-title {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      letter-spacing: 0.12em;
+      color: var(--gold-primary);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .brand-tag {
+      font-size: 11px;
+      background: rgba(196, 154, 85, 0.12);
+      color: var(--gold-light);
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border-gold);
+      letter-spacing: 0.05em;
+    }
+
+    .status-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--badge-success);
+      box-shadow: 0 0 10px var(--badge-success);
+      margin-right: 6px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .live-clock {
+      color: var(--text-muted);
+      font-size: 12px;
+      font-variant-numeric: tabular-nums;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Main Container */
+    .admin-container {
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 28px 24px;
+      flex: 1;
+    }
+
+    /* KPI Stat Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .stat-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .stat-card:hover {
+      border-color: var(--border-gold);
+      transform: translateY(-2px);
+    }
+
+    .stat-icon {
+      font-size: 22px;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+
+    .stat-value {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--text-main);
+      font-variant-numeric: tabular-nums;
+      line-height: 1.1;
+    }
+
+    .stat-subtext {
+      font-size: 11px;
+      color: var(--text-subtle);
+      margin-top: 6px;
+    }
+
+    /* Navigation Tabs */
+    .tabs-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 22px;
+      padding-bottom: 2px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 18px;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-main);
+    }
+
+    .tab-btn.active {
+      color: var(--gold-light);
+      border-bottom-color: var(--gold-primary);
+    }
+
+    .tab-badge {
+      background: var(--bg-surface-elevated);
+      color: var(--text-muted);
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    .tab-btn.active .tab-badge {
+      background: rgba(196, 154, 85, 0.2);
+      color: var(--gold-light);
+    }
+
+    .tab-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Filter Toolbar */
+    .filter-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 260px;
+      max-width: 440px;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 10px 14px 10px 36px;
+      color: var(--text-main);
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--gold-primary);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 14px;
+      pointer-events: none;
+    }
+
+    .filter-select {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      color: var(--text-main);
+      font-size: 13px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .filter-select:focus {
+      border-color: var(--gold-primary);
+    }
+
+    /* Card Panels & Tables */
+    .panel {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th {
+      background: var(--bg-surface-elevated);
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-subtle);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-subtle);
+      vertical-align: middle;
+      color: var(--text-main);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: rgba(255, 255, 255, 0.015);
+    }
+
+    /* Status Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 9px;
+      border-radius: 999px;
+      letter-spacing: 0.03em;
+    }
+
+    .badge-yeni {
+      background: rgba(59, 130, 246, 0.12);
+      color: #60A5FA;
+      border: 1px solid rgba(59, 130, 246, 0.25);
+    }
+
+    .badge-onaylandi {
+      background: rgba(16, 185, 129, 0.12);
+      color: #34D399;
+      border: 1px solid rgba(16, 185, 129, 0.25);
+    }
+
+    .badge-iptal {
+      background: rgba(239, 68, 68, 0.12);
+      color: #F87171;
+      border: 1px solid rgba(239, 68, 68, 0.25);
+    }
+
+    .badge-wa {
+      background: rgba(37, 211, 102, 0.12);
+      color: #4ADE80;
+      border: 1px solid rgba(37, 211, 102, 0.25);
+    }
+
+    .badge-call {
+      background: rgba(56, 189, 248, 0.12);
+      color: #38BDF8;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+    }
+
+    /* Action Links & Dropdowns */
+    .guest-name {
+      font-weight: 600;
+      color: #FFFFFF;
+      font-size: 14px;
+    }
+
+    .phone-link {
+      color: var(--text-main);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 500;
+      transition: color 0.15s ease;
+    }
+
+    .phone-link:hover {
+      color: var(--gold-light);
+    }
+
+    .btn-quick-wa {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(37, 211, 102, 0.12);
+      color: #25D366;
+      border: 1px solid rgba(37, 211, 102, 0.3);
+      padding: 4px 8px;
+      border-radius: var(--radius-sm);
+      font-size: 11px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      margin-left: 6px;
+    }
+
+    .btn-quick-wa:hover {
+      background: #25D366;
+      color: #0A0A0C;
+    }
+
+    .status-select {
+      background: var(--bg-base);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      color: var(--text-main);
+      font-size: 12px;
+      padding: 5px 8px;
+      cursor: pointer;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .status-select:focus {
+      border-color: var(--gold-primary);
+    }
+
+    .note-text {
+      color: var(--text-muted);
+      font-size: 12px;
+      max-width: 220px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .empty-state {
+      padding: 48px 24px;
+      text-align: center;
+      color: var(--text-muted);
+    }
+
+    .empty-icon {
+      font-size: 36px;
+      margin-bottom: 12px;
+      opacity: 0.5;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-lg);
+      max-width: 480px;
+      width: 100%;
+      padding: 28px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    }
+
+    .modal-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 10px;
+    }
+
+    .modal-desc {
+      color: var(--text-muted);
+      font-size: 13px;
+      margin-bottom: 22px;
+      line-height: 1.5;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    /* Toast Notification */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--gold-primary);
+      color: var(--text-main);
+      padding: 12px 20px;
+      border-radius: var(--radius-md);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      font-size: 13px;
+      font-weight: 500;
+      z-index: 10000;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+
+    #toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.97); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @media (max-width: 768px) {
+      .admin-header {
+        padding: 12px 16px;
+      }
+      .admin-container {
+        padding: 16px 12px;
+      }
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .stat-card {
+        padding: 14px;
+      }
+      .stat-value {
+        font-size: 24px;
+      }
+      .tabs-bar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .nav-tabs {
+        width: 100%;
+        overflow-x: auto;
+      }
+      .filter-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .search-box {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Auth Screen -->
+  <div id="auth-screen">
+    <div class="auth-card">
+      <div class="auth-brand">Heybeli Sahne</div>
+      <div class="auth-subtitle">Yönetici Giriş Paneli &bull; v1.0</div>
+      <form class="auth-form" id="login-form">
+        <div class="form-group">
+          <label for="admin-password">Yönetici Şifresi</label>
+          <input type="password" id="admin-password" class="input-field" placeholder="Şifrenizi giriniz..." autocomplete="current-password" autofocus required>
+        </div>
+        <button type="submit" class="btn btn-gold" id="login-btn">
+          <span>Giriş Yap</span>
+          <span>&rarr;</span>
+        </button>
+        <div class="auth-error" id="auth-error">Hatalı şifre. Lütfen tekrar deneyiniz.</div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin Application -->
+  <div id="admin-app">
+    <!-- Top Header -->
+    <header class="admin-header">
+      <div class="brand-wrap">
+        <span class="status-dot"></span>
+        <span class="brand-title">Heybeli Sahne</span>
+        <span class="brand-tag">YÖNETİM v1.0</span>
+      </div>
+      <div class="header-actions">
+        <div class="live-clock" id="live-clock">
+          <span>🕒</span>
+          <span id="clock-text">--:--:--</span>
+        </div>
+        <button class="btn btn-outline btn-sm" id="btn-refresh" title="Verileri Yenile">
+          <span>🔄</span>
+          <span>Yenile</span>
+        </button>
+        <button class="btn btn-danger-outline btn-sm" id="btn-logout" title="Oturumu Kapat">
+          <span>Çıkış</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="admin-container">
+      <!-- KPI Stats -->
+      <section class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">🍾</div>
+          <div class="stat-label">Toplam Rezervasyon</div>
+          <div class="stat-value" id="stat-res-total">0</div>
+          <div class="stat-subtext" id="stat-res-breakdown">0 Yeni &bull; 0 Onaylı</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">📞</div>
+          <div class="stat-label">Telefon Aramaları</div>
+          <div class="stat-value" id="stat-calls-total">0</div>
+          <div class="stat-subtext">tel: Buton Tıklamaları</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">💬</div>
+          <div class="stat-label">WhatsApp İletişimleri</div>
+          <div class="stat-value" id="stat-wa-total">0</div>
+          <div class="stat-subtext">wa.me Buton Tıklamaları</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">⚡</div>
+          <div class="stat-label">Bugünkü Hareketlilik</div>
+          <div class="stat-value" id="stat-today-total">0</div>
+          <div class="stat-subtext">Bugün Gelen Form + Tıklama</div>
+        </div>
+      </section>
+
+      <!-- Tabs Header -->
+      <section class="tabs-bar">
+        <div class="nav-tabs">
+          <button class="tab-btn active" data-tab="reservations">
+            <span>🍾 Rezervasyon Talepleri</span>
+            <span class="tab-badge" id="tab-res-count">0</span>
+          </button>
+          <button class="tab-btn" data-tab="clicks">
+            <span>📊 İletişim &amp; Tıklama Kayıtları</span>
+            <span class="tab-badge" id="tab-clicks-count">0</span>
+          </button>
+        </div>
+
+        <div class="tab-actions">
+          <button class="btn btn-outline btn-sm" id="btn-export-csv">
+            <span>📥</span>
+            <span>Excel / CSV İndir</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Tab 1: Reservations -->
+      <section id="view-reservations" class="tab-view">
+        <div class="filter-toolbar">
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="search-res" class="search-input" placeholder="İsim veya telefon numarasıyla ara...">
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <select id="filter-status" class="filter-select">
+              <option value="all">Tüm Durumlar</option>
+              <option value="yeni">Sadece Yeniler</option>
+              <option value="onaylandi">Onaylananlar</option>
+              <option value="iptal">İptal Edilenler</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Talep ID</th>
+                  <th>Misafir</th>
+                  <th>İletişim &amp; Hızlı Mesaj</th>
+                  <th>Tarih</th>
+                  <th>Kişi</th>
+                  <th>Masa Türü</th>
+                  <th>Özel Not</th>
+                  <th>Durum</th>
+                  <th style="text-align: right;">İşlem</th>
+                </tr>
+              </thead>
+              <tbody id="reservations-table-body">
+                <!-- Dynamically Populated -->
+              </tbody>
+            </table>
+          </div>
+          <div id="res-empty" class="empty-state" style="display: none;">
+            <div class="empty-icon">📭</div>
+            <div>Henüz eşleşen bir rezervasyon talebi bulunamadı.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tab 2: Click Analytics -->
+      <section id="view-clicks" class="tab-view" style="display: none;">
+        <div class="filter-toolbar">
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="search-clicks" class="search-input" placeholder="Sayfa veya kaynak buton ara...">
+          </div>
+          <div>
+            <select id="filter-click-type" class="filter-select">
+              <option value="all">Tüm Butonlar</option>
+              <option value="whatsapp">Sadece WhatsApp</option>
+              <option value="call">Sadece Telefon</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Kayıt ID</th>
+                  <th>Eylem Türü</th>
+                  <th>Kaynak Buton</th>
+                  <th>Sayfa</th>
+                  <th>Cihaz</th>
+                  <th>Zaman</th>
+                </tr>
+              </thead>
+              <tbody id="clicks-table-body">
+                <!-- Dynamically Populated -->
+              </tbody>
+            </table>
+          </div>
+          <div id="clicks-empty" class="empty-state" style="display: none;">
+            <div class="empty-icon">📊</div>
+            <div>Henüz tıklama kaydı bulunmuyor.</div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Delete Confirm Modal -->
+  <div class="modal-overlay" id="delete-modal">
+    <div class="modal-card">
+      <div class="modal-title">Rezervasyonu Sil</div>
+      <div class="modal-desc" id="delete-modal-text">Bu rezervasyon kaydını kalıcı olarak silmek istediğinizden emin misiniz?</div>
+      <div class="modal-actions">
+        <button class="btn btn-outline btn-sm" id="btn-modal-cancel">Vazgeç</button>
+        <button class="btn btn-danger-outline btn-sm" id="btn-modal-confirm">Evet, Sil</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast">Bildirim mesajı</div>
+
+  <script>
+    // State
+    let authToken = sessionStorage.getItem('heybeli_admin_token') || '';
+    let currentData = { stats: {}, reservations: [], clicks: [] };
+    let deleteTargetId = null;
+
+    // Elements
+    const authScreen = document.getElementById('auth-screen');
+    const adminApp = document.getElementById('admin-app');
+    const loginForm = document.getElementById('login-form');
+    const adminPasswordInput = document.getElementById('admin-password');
+    const authError = document.getElementById('auth-error');
+    const btnLogout = document.getElementById('btn-logout');
+    const btnRefresh = document.getElementById('btn-refresh');
+    const btnExportCsv = document.getElementById('btn-export-csv');
+    const clockText = document.getElementById('clock-text');
+    const toast = document.getElementById('toast');
+
+    // Live Clock
+    function updateClock() {
+      const now = new Date();
+      clockText.textContent = now.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Toast
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    // Format Date & Relative Time
+    function formatDate(isoStr) {
+      if (!isoStr) return '-';
+      const d = new Date(isoStr);
+      if (isNaN(d.getTime())) return isoStr;
+      return d.toLocaleDateString('tr-TR', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+    }
+
+    function formatResDate(dateStr) {
+      if (!dateStr) return '-';
+      const parts = dateStr.split('-');
+      if (parts.length === 3) {
+        return `${parts[2]}.${parts[1]}.${parts[0]}`;
+      }
+      return dateStr;
+    }
+
+    // Auth Check
+    function checkAuth() {
+      if (authToken) {
+        authScreen.style.display = 'none';
+        adminApp.style.display = 'flex';
+        loadDashboardData();
+      } else {
+        authScreen.style.display = 'flex';
+        adminApp.style.display = 'none';
+        adminPasswordInput.focus();
+      }
+    }
+
+    // Login Form Submit
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      authError.style.display = 'none';
+      const password = adminPasswordInput.value;
+
+      try {
+        const res = await fetch('/api/admin/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password })
+        });
+        const data = await res.json();
+
+        if (res.ok && data.success) {
+          authToken = data.token;
+          sessionStorage.setItem('heybeli_admin_token', authToken);
+          checkAuth();
+          showToast('✓ Giriş başarılı.');
+        } else {
+          authError.style.display = 'block';
+        }
+      } catch (err) {
+        authError.textContent = 'Bağlantı hatası: ' + err.message;
+        authError.style.display = 'block';
+      }
+    });
+
+    // Logout
+    btnLogout.addEventListener('click', () => {
+      sessionStorage.removeItem('heybeli_admin_token');
+      authToken = '';
+      checkAuth();
+    });
+
+    // Fetch Dashboard Data
+    async function loadDashboardData() {
+      if (!authToken) return;
+
+      try {
+        const res = await fetch('/api/admin/data', {
+          headers: {
+            'Authorization': `Bearer ${authToken}`
+          }
+        });
+
+        if (res.status === 401) {
+          sessionStorage.removeItem('heybeli_admin_token');
+          authToken = '';
+          checkAuth();
+          return;
+        }
+
+        const data = await res.json();
+        if (data.success) {
+          currentData = data;
+          renderStats(data.stats);
+          renderReservations();
+          renderClicks();
+        }
+      } catch (err) {
+        showToast('Veri çekilemedi: ' + err.message);
+      }
+    }
+
+    btnRefresh.addEventListener('click', () => {
+      loadDashboardData();
+      showToast('Veriler güncellendi.');
+    });
+
+    // Auto-refresh every 30s
+    setInterval(() => {
+      if (authToken) loadDashboardData();
+    }, 30000);
+
+    // Render Stats
+    function renderStats(stats) {
+      if (!stats) return;
+      document.getElementById('stat-res-total').textContent = stats.totalReservations || 0;
+      document.getElementById('stat-res-breakdown').textContent = 
+        `${stats.reservationsByStatus?.yeni || 0} Yeni • ${stats.reservationsByStatus?.onaylandi || 0} Onaylı`;
+
+      document.getElementById('stat-calls-total').textContent = stats.totalCalls || 0;
+      document.getElementById('stat-wa-total').textContent = stats.totalWhatsApp || 0;
+
+      const todayActivity = (stats.todayReservations || 0) + (stats.todayClicks || 0);
+      document.getElementById('stat-today-total').textContent = todayActivity;
+
+      document.getElementById('tab-res-count').textContent = stats.totalReservations || 0;
+      document.getElementById('tab-clicks-count').textContent = stats.totalClicks || 0;
+    }
+
+    // Render Reservations Table
+    function renderReservations() {
+      const tbody = document.getElementById('reservations-table-body');
+      const emptyState = document.getElementById('res-empty');
+      const search = (document.getElementById('search-res').value || '').toLowerCase().trim();
+      const statusFilter = document.getElementById('filter-status').value;
+
+      let list = currentData.reservations || [];
+
+      // Filter
+      if (statusFilter !== 'all') {
+        list = list.filter(r => r.status === statusFilter);
+      }
+
+      if (search) {
+        list = list.filter(r => 
+          (r.name && r.name.toLowerCase().includes(search)) ||
+          (r.phone && r.phone.toLowerCase().includes(search)) ||
+          (r.id && r.id.toLowerCase().includes(search)) ||
+          (r.note && r.note.toLowerCase().includes(search))
+        );
+      }
+
+      if (list.length === 0) {
+        tbody.innerHTML = '';
+        emptyState.style.display = 'block';
+        return;
+      }
+
+      emptyState.style.display = 'none';
+
+      tbody.innerHTML = list.map(item => {
+        const cleanPhone = (item.phone || '').replace(/[^0-9]/g, '');
+        const waPhone = cleanPhone.startsWith('0') ? '9' + cleanPhone : (cleanPhone.startsWith('90') ? cleanPhone : '90' + cleanPhone);
+        const waMsg = encodeURIComponent(`Merhaba ${item.name} Bey/Hanım, Heybeli Sahne rezervasyon talebiniz (${formatResDate(item.date)} - ${item.guests}) hakkında bilgi vermek için iletişime geçiyoruz.`);
+        const waUrl = `https://wa.me/${waPhone}?text=${waMsg}`;
+
+        let statusBadgeClass = 'badge-yeni';
+        let statusLabel = 'Yeni Talep';
+        if (item.status === 'onaylandi') {
+          statusBadgeClass = 'badge-onaylandi';
+          statusLabel = 'Onaylandı';
+        } else if (item.status === 'iptal') {
+          statusBadgeClass = 'badge-iptal';
+          statusLabel = 'İptal';
+        }
+
+        return `
+          <tr data-id="${item.id}">
+            <td style="font-family: monospace; font-size: 12px; color: var(--gold-light);">#${item.id}</td>
+            <td>
+              <div class="guest-name">${escapeHtml(item.name)}</div>
+              <div style="font-size: 11px; color: var(--text-subtle);">${formatDate(item.createdAt)}</div>
+            </td>
+            <td>
+              <div style="display: flex; align-items: center; gap: 4px;">
+                <a href="tel:${escapeHtml(item.phone)}" class="phone-link">📞 ${escapeHtml(item.phone)}</a>
+                <a href="${waUrl}" target="_blank" rel="noopener" class="btn-quick-wa" title="WhatsApp üzerinden yaz">💬 Yaz</a>
+              </div>
+            </td>
+            <td style="white-space: nowrap; font-weight: 500;">📅 ${formatResDate(item.date)}</td>
+            <td style="white-space: nowrap;">👥 ${escapeHtml(item.guests || '2 Kişi')}</td>
+            <td style="white-space: nowrap; font-size: 12px; color: var(--gold-light);">🍸 ${escapeHtml(item.tableType || 'Standart')}</td>
+            <td>
+              <div class="note-text" title="${escapeHtml(item.note || '-')}">${escapeHtml(item.note || '-')}</div>
+            </td>
+            <td>
+              <select class="status-select" data-id="${item.id}" onchange="updateStatus('${item.id}', this.value)">
+                <option value="yeni" ${item.status === 'yeni' ? 'selected' : ''}>🔵 Yeni</option>
+                <option value="onaylandi" ${item.status === 'onaylandi' ? 'selected' : ''}>🟢 Onaylandı</option>
+                <option value="iptal" ${item.status === 'iptal' ? 'selected' : ''}>🔴 İptal</option>
+              </select>
+            </td>
+            <td style="text-align: right; white-space: nowrap;">
+              <button class="btn btn-danger-outline btn-sm" onclick="promptDelete('${item.id}', '${escapeHtml(item.name)}')">
+                Sil
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // Render Clicks Table
+    function renderClicks() {
+      const tbody = document.getElementById('clicks-table-body');
+      const emptyState = document.getElementById('clicks-empty');
+      const search = (document.getElementById('search-clicks').value || '').toLowerCase().trim();
+      const typeFilter = document.getElementById('filter-click-type').value;
+
+      let list = currentData.clicks || [];
+
+      if (typeFilter !== 'all') {
+        list = list.filter(c => c.type === typeFilter);
+      }
+
+      if (search) {
+        list = list.filter(c => 
+          (c.source && c.source.toLowerCase().includes(search)) ||
+          (c.page && c.page.toLowerCase().includes(search)) ||
+          (c.device && c.device.toLowerCase().includes(search))
+        );
+      }
+
+      if (list.length === 0) {
+        tbody.innerHTML = '';
+        emptyState.style.display = 'block';
+        return;
+      }
+
+      emptyState.style.display = 'none';
+
+      tbody.innerHTML = list.map(c => {
+        const isWa = c.type === 'whatsapp';
+        const typeBadge = isWa 
+          ? `<span class="badge badge-wa">💬 WhatsApp Tıklama</span>`
+          : `<span class="badge badge-call">📞 Telefon Arama</span>`;
+
+        return `
+          <tr>
+            <td style="font-family: monospace; font-size: 12px; color: var(--text-muted);">${c.id || '-'}</td>
+            <td>${typeBadge}</td>
+            <td style="font-weight: 600; color: var(--text-main);">${escapeHtml(c.source || 'Bilinmiyor')}</td>
+            <td style="font-family: monospace; font-size: 12px; color: var(--gold-light);">${escapeHtml(c.page || '/')}</td>
+            <td style="font-size: 12px; color: var(--text-muted);">${escapeHtml(c.device || 'Cihaz')}</td>
+            <td style="white-space: nowrap; font-size: 12px; color: var(--text-muted);">${formatDate(c.timestamp)}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // Update Reservation Status
+    window.updateStatus = async function(id, newStatus) {
+      try {
+        const res = await fetch(`/api/admin/reservations/${id}`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${authToken}`
+          },
+          body: JSON.stringify({ status: newStatus })
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          showToast(`Rezervasyon durumu güncellendi: ${newStatus}`);
+          loadDashboardData();
+        } else {
+          showToast('Hata: ' + (data.error || 'Güncellenemedi.'));
+        }
+      } catch (err) {
+        showToast('Bağlantı hatası: ' + err.message);
+      }
+    };
+
+    // Delete Reservation Flow
+    window.promptDelete = function(id, name) {
+      deleteTargetId = id;
+      document.getElementById('delete-modal-text').textContent = `#${id} numaralı (${name}) rezervasyonunu kalıcı olarak silmek istediğinizden emin misiniz?`;
+      document.getElementById('delete-modal').style.display = 'flex';
+    };
+
+    document.getElementById('btn-modal-cancel').addEventListener('click', () => {
+      document.getElementById('delete-modal').style.display = 'none';
+      deleteTargetId = null;
+    });
+
+    document.getElementById('btn-modal-confirm').addEventListener('click', async () => {
+      if (!deleteTargetId) return;
+
+      try {
+        const res = await fetch(`/api/admin/reservations/${deleteTargetId}`, {
+          method: 'DELETE',
+          headers: {
+            'Authorization': `Bearer ${authToken}`
+          }
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          showToast('Rezervasyon kaydı silindi.');
+          document.getElementById('delete-modal').style.display = 'none';
+          deleteTargetId = null;
+          loadDashboardData();
+        } else {
+          showToast('Hata: ' + (data.error || 'Silinemedi.'));
+        }
+      } catch (err) {
+        showToast('Bağlantı hatası: ' + err.message);
+      }
+    });
+
+    // Export CSV
+    btnExportCsv.addEventListener('click', () => {
+      if (!authToken) return;
+      window.open(`/api/admin/export?token=${encodeURIComponent(authToken)}`, '_blank');
+    });
+
+    // Tabs Switching
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const tab = btn.getAttribute('data-tab');
+        if (tab === 'reservations') {
+          document.getElementById('view-reservations').style.display = 'block';
+          document.getElementById('view-clicks').style.display = 'none';
+        } else {
+          document.getElementById('view-reservations').style.display = 'none';
+          document.getElementById('view-clicks').style.display = 'block';
+        }
+      });
+    });
+
+    // Search and Filter Listeners
+    document.getElementById('search-res').addEventListener('input', renderReservations);
+    document.getElementById('filter-status').addEventListener('change', renderReservations);
+    document.getElementById('search-clicks').addEventListener('input', renderClicks);
+    document.getElementById('filter-click-type').addEventListener('change', renderClicks);
+
+    // Escape HTML Helper
+    function escapeHtml(text) {
+      if (!text) return '';
+      return String(text)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    // Init
+    checkAuth();
+  </script>
+</body>
+</html>

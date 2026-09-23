@@ -169,4 +169,67 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // ==========================================
+  // CONVERSION & CLICK TRACKING (v1)
+  // Calls (tel:) & WhatsApp (wa.me) Click Tracking
+  // ==========================================
+  function trackClick(type, source) {
+    try {
+      const payload = JSON.stringify({
+        type,
+        source,
+        page: window.location.pathname || '/'
+      });
+
+      if (navigator.sendBeacon) {
+        const blob = new Blob([payload], { type: 'application/json' });
+        navigator.sendBeacon('/api/track', blob);
+      } else {
+        fetch('/api/track', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: payload,
+          keepalive: true
+        }).catch(() => {});
+      }
+    } catch (err) {
+      // Non-blocking silently
+    }
+  }
+
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (!link) return;
+    const href = link.getAttribute('href') || '';
+
+    let type = null;
+    if (href.startsWith('tel:')) {
+      type = 'call';
+    } else if (href.includes('wa.me') || href.includes('whatsapp.com')) {
+      type = 'whatsapp';
+    }
+
+    if (type) {
+      let source = 'Sayfa İçi Buton';
+      if (link.closest('#mobile-bottom-bar, .mobile-bottom-bar')) {
+        source = 'Mobil Sabit Alt Bar';
+      } else if (link.closest('header, #header, .nav-actions')) {
+        source = 'Üst Menü (Header)';
+      } else if (link.closest('footer, .site-footer')) {
+        source = 'Alt Bilgi (Footer)';
+      } else if (link.closest('#hero, .hero-section')) {
+        source = 'Hero / Sahne Alanı';
+      } else if (link.closest('.schedule-item, .event-card')) {
+        source = 'Etkinlik / Program';
+      } else if (link.closest('.contact-info, #iletisim, .iletisim-card')) {
+        source = 'İletişim Bölümü';
+      } else {
+        const btnText = (link.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 30);
+        if (btnText) source = btnText;
+      }
+      trackClick(type, source);
+    }
+  });
 });
+

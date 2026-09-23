@@ -2,6 +2,8 @@ const compression = require('compression');
 const express = require('express');
 const path = require('path');
 const { UPCOMING_EVENTS, MENU_DATA, VENUE_INFO } = require('./events-data');
+const store = require('./store');
+
 
 const app = express();
 const PORT = process.env.PORT || 3002;
@@ -82,6 +84,11 @@ app.get('/iletisim', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'iletisim.html'));
 });
 
+// Admin Dashboard Route
+app.get('/admin', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'admin.html'));
+});
+
 // Health check endpoint for DigitalOcean
 app.get('/api/health', (req, res) => {
   res.json({
@@ -89,7 +96,7 @@ app.get('/api/health', (req, res) => {
     venue: VENUE_INFO.name,
     message: `${VENUE_INFO.name} Dijital Servisi Aktif ve Çalışıyor`,
     port: PORT,
-    version: '1.0.0',
+    version: '1.1.0',
     uptimeSeconds: Math.floor((Date.now() - START_TIME.getTime()) / 1000),
     environment: process.env.NODE_ENV || 'production',
     serverTime: new Date().toISOString()
@@ -124,7 +131,30 @@ app.get('/api/venue', (req, res) => {
   res.json(VENUE_INFO);
 });
 
-// Reservation Form API Endpoint
+// ==========================================
+// TRACKING & CONVERSION API
+// ==========================================
+
+// Click Tracking: Phone Calls & WhatsApp Inquiries
+app.post('/api/track', (req, res) => {
+  const { type, source, page } = req.body || {};
+  const userAgent = req.headers['user-agent'] || '';
+  const isMobile = /mobile|iphone|android|ipad/i.test(userAgent);
+  const device = isMobile ? 'Mobil' : 'Masaüstü';
+  const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress || '';
+
+  const tracked = store.addClick({
+    type: type || 'whatsapp',
+    source: source || 'sayfa-ici',
+    page: page || '/',
+    device,
+    ip
+  });
+
+  res.status(200).json({ success: true, id: tracked.id });
+});
+
+// Reservation Form API: Saves to persistent store
 app.post('/api/reservation', (req, res) => {
   const { name, phone, date, guests, tableType, note } = req.body;
 
@@ -135,8 +165,19 @@ app.post('/api/reservation', (req, res) => {
     });
   }
 
+  const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress || '';
+  const saved = store.addReservation({
+    name: name.trim(),
+    phone: phone.trim(),
+    date,
+    guests,
+    tableType,
+    note,
+    ip
+  });
+
   console.log('====================================');
-  console.log('🍾 YENİ MASA REZERVASYON TALEBİ');
+  console.log(`🍾 YENİ MASA REZERVASYON TALEBİ [${saved.id}]`);
   console.log(`İsim: ${name} | Tel: ${phone}`);
   console.log(`Tarih: ${date} | Kişi Sayısı: ${guests || '2'}`);
   console.log(`Masa Tipi: ${tableType || 'Standart'} | Not: ${note || '-'}`);
@@ -144,8 +185,84 @@ app.post('/api/reservation', (req, res) => {
 
   res.json({
     success: true,
+    id: saved.id,
     message: `Talebiniz Heybeli Sahne ekibine iletildi. Rezervasyon onayınız ve masa detaylarınız için ${phone} numaralı telefondan en kısa sürede iletişime geçilecektir.`
   });
+});
+
+// ==========================================
+// ADMIN PANEL API (v1)
+// ==========================================
+
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'heybeli2026';
+const ADMIN_TOKEN = 'heybeli_token_' + Buffer.from(ADMIN_PASSWORD).toString('hex');
+
+// Admin Auth Middleware
+function requireAdmin(req, res, next) {
+  const authHeader = req.headers['authorization'] || '';
+  const token = authHeader.replace(/^Bearer\s+/i, '');
+  if (token === ADMIN_TOKEN || req.query.token === ADMIN_TOKEN) {
+    return next();
+  }
+  return res.status(401).json({ success: false, error: 'Yetkisiz erişim. Lütfen giriş yapınız.' });
+}
+
+// Admin Login
+app.post('/api/admin/login', (req, res) => {
+  const { password } = req.body || {};
+  if (password === ADMIN_PASSWORD) {
+    return res.json({ success: true, token: ADMIN_TOKEN });
+  }
+  return res.status(401).json({ success: false, error: 'Hatalı yönetici şifresi.' });
+});
+
+// Admin Dashboard Data: Stats, Reservations & Clicks
+app.get('/api/admin/data', requireAdmin, (req, res) => {
+  const stats = store.getStats();
+  const reservations = store.getReservations({
+    status: req.query.status,
+    search: req.query.search
+  });
+  const clicks = store.getClicks(200);
+
+  res.json({
+    success: true,
+    stats,
+    reservations,
+    clicks
+  });
+});
+
+// Update Reservation Status (yeni -> onaylandi / iptal)
+app.patch('/api/admin/reservations/:id', requireAdmin, (req, res) => {
+  const { status } = req.body || {};
+  if (!status) {
+    return res.status(400).json({ success: false, error: 'Durum belirtilmelidir.' });
+  }
+
+  const updated = store.updateReservationStatus(req.params.id, status);
+  if (!updated) {
+    return res.status(404).json({ success: false, error: 'Rezervasyon bulunamadı.' });
+  }
+
+  res.json({ success: true, reservation: updated });
+});
+
+// Delete Reservation
+app.delete('/api/admin/reservations/:id', requireAdmin, (req, res) => {
+  const deleted = store.deleteReservation(req.params.id);
+  if (!deleted) {
+    return res.status(404).json({ success: false, error: 'Rezervasyon bulunamadı.' });
+  }
+  res.json({ success: true, message: 'Rezervasyon silindi.' });
+});
+
+// Export Reservations as CSV
+app.get('/api/admin/export', requireAdmin, (req, res) => {
+  const csv = store.exportReservationsCSV();
+  res.setHeader('Content-Type', 'text/csv; charset=utf-8');
+  res.setHeader('Content-Disposition', `attachment; filename=heybeli-sahne-rezervasyonlar-${Date.now()}.csv`);
+  res.send(csv);
 });
 
 // Fallback to index.html
@@ -158,5 +275,6 @@ app.listen(PORT, '0.0.0.0', () => {
   console.log(`🎤 ${VENUE_INFO.name} | ${VENUE_INFO.tagline}`);
   console.log(`🚀 Sunucu port ${PORT} üzerinde hazır!`);
   console.log(`🌐 http://localhost:${PORT}`);
+  console.log(`👑 Admin Paneli: http://localhost:${PORT}/admin`);
   console.log(`=================================================`);
 });
